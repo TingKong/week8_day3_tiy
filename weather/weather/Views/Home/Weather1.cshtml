@@ -1,0 +1,28 @@
+﻿
+@{
+    ViewBag.Title = "Weather1";
+}
+
+<h2>Weather1</h2>
+
+<p id="responseParagraph"></p>
+<p id="weather"></p>
+<p id="humidity"></p>
+<p id="words"></p>
+
+
+<input type="button" value="Get Weather" onclick="goGetWeather();"/>
+
+<script>
+    function goGetWeather() {
+        $.get("http://api.openweathermap.org/data/2.5/weather?q=Detroit&APPID=f034c681a6edc9235b67986bf6d680cc&units=imperial",
+            function (response) {
+                $('#responseParagraph').text(response.name);
+                $('#weather').text(response.main.temp);
+                $('#humidity').text(response.main.humidity);
+
+                $('#words').text(response.weather[0].main);
+
+            });
+    }
+</script>
